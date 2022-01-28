@@ -25,7 +25,7 @@ client.on('messageCreate', msg => {
     sendHelp(msg, 0);
   }else if(msg.content.match(/(why|i) +can'?t +(i +)?join +(the +)?(creative(\/| +(or|and) +)survival +|creative +|survival +|demo +)?ser?vr?er/gi)){
     sendHelp(msg, 1);
-  }else if(msg.content.match(/((why|i) +can'?t +(i +)?use +|why +do(es)?n'?t +)[a-z0-9 ']+ +work/gi)){
+  }else if(msg.content.match(/((why|i) +can'?t +(i +)?use +[a-z0-9 ']+|why +do(es)?n'?t +[a-z0-9 ']+ +work)/gi)){
     sendHelp(msg, 2);
   }else if(msg.content.match(/can('?t)? +(you +(guys +)?|y'?all +)update +(it|the +ser?vr?er|the +game|the +client|minecraft|mine +craft)?/gi)){
     sendHelp(msg, 3);
