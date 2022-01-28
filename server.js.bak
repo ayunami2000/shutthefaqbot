@@ -9,7 +9,6 @@ client.on('ready', () => {
 
 client.on('messageCreate', msg => {
   if(recents.includes(msg.author.id))return;
-  if(msg.author===client.user)return;
   var matched = true;
   if(msg.content.match(/stop ask(ing)?/gi)){
     matched = false;
