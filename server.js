@@ -13,7 +13,7 @@ client.on('messageCreate', msg => {
   var matched = true;
   if(msg.content.match(/stop ask(ing)?/gi)){
     matched = false;
-  }else if (msg.content.match(/ho(w|e) +(do(e?s)? +i|to( +i)?) +(cre?ae?te? +(an? +|(my +)?own +)ser?vr?er?|make +(an? +|(my +)?own +)ser?vr?er?|host( +(an? +|(my +)?own +)ser?vr?er?|(th|d)is)?)/gi)) {
+  }else if (msg.content.match(/ho(w|e) +(do(e?s)? +(i|you|u)|to( +(i|you|u))?) +(cre?ae?te? +(an? +|(my +)?own +)ser?vr?er?|make +(an? +|(my +)?own +)ser?vr?er?|host( +(an? +|(my +)?own +)ser?vr?er?|(th|d)is)?)/gi)) {
     sendHelp(msg, 0);
   }else if(msg.content.match(/(why|i) +can'?t +(i +)?join +(the +)?(creative(\/| +(or|and) +)survival +|creative +|survival +|demo +)?ser?vr?er/gi)){
     sendHelp(msg, 1);
