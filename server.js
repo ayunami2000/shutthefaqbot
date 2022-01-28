@@ -5,15 +5,23 @@ var recents = [];
 
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
+  client.user.setPresence({status: 'dnd'});
+  client.user.setActivity({
+    type: 'WATCHING',
+    name: 'users of eaglercraft'
+  });
 });
 
 client.on('messageCreate', msg => {
   if(recents.includes(msg.author.id))return;
   if(msg.author===client.user)return;
   var matched = true;
-  if(msg.content.match(/stop ask(ing)?/gi)){
+  if(msg.channel.id==936480157802307664){
+    sendHelp(msg, 4, true);
     matched = false;
-  }else if (msg.content.match(/ho(w|e) +(do(e?s)? +(i|you|u)|to( +(i|you|u))?) +(cre?ae?te? +(an? +|(my +)?own +)ser?vr?er?|make +(an? +|(my +)?own +)ser?vr?er?|host( +(an? +|(my +)?own +)ser?vr?er?|(th|d)is)?)/gi)) {
+  }else if(msg.content.match(/stop ask(ing)?/gi)){
+    matched = false;
+  }else if (msg.content.match(/ho(w|e) +(do(e?s)?( +(i|you|u))?|to( +(i|you|u))?) +(cre?ae?te? +(an? +|(my +)?own +)?ser?vr?er?|make +(an? +|(my +)?own +)?ser?vr?er?|host( +(an? +|(my +)?own +)?ser?vr?er?|(th|d)is)?)/gi)) {
     sendHelp(msg, 0);
   }else if(msg.content.match(/(why|i) +can'?t +(i +)?join +(the +)?(creative(\/| +(or|and) +)survival +|creative +|survival +|demo +)?ser?vr?er/gi)){
     sendHelp(msg, 1);
@@ -21,8 +29,6 @@ client.on('messageCreate', msg => {
     sendHelp(msg, 2);
   }else if(msg.content.match(/can('?t)? +(you +(guys +)?|y'?all +)update +(it|the +ser?vr?er|the +game|the +client|minecraft|mine +craft)?/gi)){
     sendHelp(msg, 3);
-  }else if(msg.channel.id===936480157802307664){
-    sendHelp(msg, 4);
   }else{
     matched = false;
   }
@@ -67,12 +73,13 @@ const topics =  [
                   [
                     "how to maek ser ver  ? !",
                     [
-                      "[:D](https://github.com/LAX1DUDE/eaglercraft#installing)"
+                      "[https://github.com/LAX1DUDE/eaglercraft#installing](https://github.com/LAX1DUDE/eaglercraft#installing)"
                     ]
                   ]
                 ];
 
-function sendHelp(msg, topic){
+function sendHelp(msg, topic, fardmode){
+	if(fardmode==null)fardmode=false;
     const embed = new MessageEmbed()
                   .setTitle(topics[topic][0])
                   .setColor("RANDOM");
@@ -81,8 +88,8 @@ function sendHelp(msg, topic){
     }else{
       for(var i=0;i<topics[topic][1].length;i++)embed.addField("Step "+(i+1), topics[topic][1][i], false);
     }
-    embed.setFooter({ text: msg.author.username+" requested this, 3 minutes until next question will be answered.", iconURL: msg.author.avatarURL() });
-    msg.reply({ embeds: [embed], "allowedMentions": { "users" : []}});
+    if(!fardmode)embed.setFooter({ text: msg.author.username+" requested this, 3 minutes until next question will be answered.", iconURL: msg.author.avatarURL() });
+    msg.reply(fardmode?({ embeds: [embed] }):({ embeds: [embed], "allowedMentions": { "users" : []}}));
 }
 
 client.login(require('fs').readFileSync('../tok.txt', {encoding: 'utf8', flag: 'r'}));
