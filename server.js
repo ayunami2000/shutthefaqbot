@@ -17,8 +17,9 @@ client.on('ready', () => {
 });
 
 client.on('messageCreate', msg => {
-  if(recents.includes(msg.author.id))return;
   if(msg.author===client.user)return;
+  if(msg.channel.id==936501244585967616&&recents.indexOf(msg.author.id)!=-1)recents.splice(recents.indexOf(msg.author.id), 1);
+  if(recents.includes(msg.author.id))return;
   var matched = true;
   if(msg.channel.id==936480157802307664){
     sendHelp(msg, 5, true);
@@ -77,7 +78,7 @@ const topics =  [
                   [
                     "Why doesn't [x] work?",
                     [
-                      "**Referring to slowness/unresponsiveness?** The servers are likely currently overloaded, or you are expecting too much out of your browser.\n**Referring to a feature that is missing?** This version of Minecraft is very old; version 1.5.2; so it does not support all of the newer features of modern Minecraft."
+                      "**Referring to slowness/unresponsiveness?** The servers are likely currently overloaded, or you are expecting too much out of your browser.\n**Referring to a feature that is missing?** This version of Minecraft is very old; version 1.5.2; so it does not support all of the newer features of modern Minecraft.\n**Referring to something else?** Let us or others know that this automatic response didn't solve your problem!"
                     ]
                   ],
                   [
