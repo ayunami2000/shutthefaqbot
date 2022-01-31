@@ -45,11 +45,13 @@ const correctSpelling = [
 	"download", "upload", "login", "profile", "user", "username", "up", "start", "stop", "someone", "somebody",
 	"world", "fail", "online", "offline", "broken", "crashed", "updated", "updating", "a", "latest", "be", "to",
 	"newer", "of", "what", "modern", "that", "there", "doesn't", "all", "not", "happen", "correctly", "possible",
-	"isnt", "vanilla", "for", "get", "help", "me", "trying"
+	"isnt", "vanilla", "for", "get", "help", "me", "trying", "add", "where", "no", "assist", "<@237080395747819520>",
+  "<@214118574485143553>", "yall", "y'all"
 ];
 
 module.exports = {
 	correctTheGoddamnSpelling: function(txtIn, tolerance) {
+    txtIn = txtIn.trim();
 		var words = txtIn.split(" ");
 		var wordsOut = "";
 		for(var i = 0; i < words.length; ++i) {
